@@ -1,0 +1,75 @@
+{% set random_graph_number = 1 -%}
+{% set real_map_classifier_samples = 1 -%}
+{% set thresholds = [0.5] %}
+{% set sigmas = [0.5] %}
+
+experiments/ral/delaunay_calibrated:
+  description: Random triangulations with varying sigma
+  map: &triangulation
+    type: delaunay
+    number: {{random_graph_number}}
+    p_not_traversable: 0.5
+    n_hidden: 7
+    size: 30
+    iters: 1
+  classifier: &classifier
+    sigma: {{sigmas}}
+    samples: 1
+  policy: &policy
+      thresholds: {{thresholds}}
+
+experiments/ral/delaunay_calibration:
+  description: Random triangulations with varying gammas
+  map: *triangulation
+  classifier:
+    sigma_cal: [0.5]
+    gamma: [0.4]
+    samples: 1
+  policy: *policy
+
+{% for n in [1] %}
+experiments/ral/delaunay_n/{{n}}:
+  description: Random triangulations with varying number of hidden edges
+  map:
+    type: delaunay
+    number: {{random_graph_number}}
+    p_not_traversable: 0.5
+    n_hidden: {{n}}
+    size: 30
+    iters: 1
+  classifier: *classifier
+  policy: *policy
+{% endfor %}
+
+
+experiments/ral/eth_asl_s:
+  description: eth_asl map with varying sigma
+  map:
+    type: real
+    path: experiments/eth_asl.gpickle
+    s: 19
+    t: 3
+    traversable: [[19, 15]]
+    prune : [[16, 12]]
+  classifier:
+    sigma: {{sigmas}}
+    samples: {{real_map_classifier_samples}}
+  policy:
+      thresholds: {{thresholds}}
+
+
+experiments/ral/indoor:
+  description: Indoor map with varying sigma
+  map:
+    type: doors
+    path: experiments/m_como.xml
+    layer_id: W
+    source_id: WS119
+    target_id: WS12
+    closed_doors: [WS50]
+    open_doors : [WS1]
+  classifier:
+    sigma: {{sigmas}}
+    samples: {{real_map_classifier_samples}}
+  policy:
+    thresholds: {{thresholds}}

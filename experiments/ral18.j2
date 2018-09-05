@@ -1,0 +1,75 @@
+{% set random_graph_number = 100000 -%}
+{% set real_map_classifier_samples = 100 -%}
+{% set thresholds = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1] %}
+{% set sigmas = [0.01, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.99] %}
+
+experiments/ral/delaunay_calibrated:
+  description: Random triangulations with varying sigma
+  map: &triangulation
+    type: delaunay
+    number: {{random_graph_number}}
+    p_not_traversable: 0.5
+    n_hidden: 7
+    size: 30
+    iters: 1
+  classifier: &classifier
+    sigma: {{sigmas}}
+    samples: 1
+  policy: &policy
+      thresholds: {{thresholds}}
+
+experiments/ral/delaunay_calibration:
+  description: Random triangulations with varying gammas
+  map: *triangulation
+  classifier:
+    sigma_cal: [0.25, 0.5, 0.75]
+    gamma: [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+    samples: 1
+  policy: *policy
+
+
+{% for n in [1,2,3,4,5,6,8,9] %}
+experiments/icra18/delaunay_n/{{n}}:
+  description: Random triangulations with varying number of hidden edges
+  map:
+    type: delaunay
+    number: {{random_graph_number}}
+    p_not_traversable: 0.5
+    n_hidden: {{n}}
+    size: 30
+    iters: 1
+  classifier: *classifier
+  policy: *policy
+{% endfor %}
+
+experiments/ral/eth_asl_s:
+  description: eth_asl map with varying sigma
+  map:
+    type: real
+    path: experiments/eth_asl.gpickle
+    s: 19
+    t: 3
+    traversable: [[19, 15]]
+    prune : [[16, 12]]
+  classifier:
+    sigma: {{sigmas}}
+    samples: {{real_map_classifier_samples}}
+  policy:
+      thresholds: {{thresholds}}
+
+
+experiments/ral/indoor:
+  description: Indoor map with varying sigma
+  map:
+    type: doors
+    path: experiments/m_como.xml
+    layer_id: W
+    source_id: WS119
+    target_id: WS12
+    closed_doors: [WS50]
+    open_doors : [WS1]
+  classifier:
+    sigma: {{sigmas}}
+    samples: {{real_map_classifier_samples}}
+  policy:
+    thresholds: {{thresholds}}

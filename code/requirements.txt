@@ -1,0 +1,10 @@
+click
+jupyter
+matplotlib==2.2
+networkx==1.11
+numpy
+pandas
+PyYAML
+scipy
+Shapely
+tqdm

@@ -1,0 +1,26 @@
+version: '2'
+services:
+  notebook:
+    image: ral
+    build:
+      dockerfile: Dockerfile
+      context: .
+    ports:
+      - 8889:8889
+    environment:
+      - "PYTHONPATH=/resilient_traversability/code"
+    volumes:
+      - ./notebooks:/notebooks
+      - ./code:/resilient_traversability/code
+    command: jupyter notebook --port=8889 --notebook-dir=/notebooks --no-browser --ip=notebook --allow-root
+  experiment:
+    image: ral
+    build:
+      dockerfile: Dockerfile
+      context: .
+    environment:
+      - "PYTHONPATH=/resilient_traversability/code"
+    volumes:
+      - ./code:/resilient_traversability/code
+      - ./experiments:/resilient_traversability/experiments
+    command: python3 code/main.py --config experiments/ral_mini.j2
