@@ -36,7 +36,7 @@ in
 {% set real_map_classifier_samples = 100 -%}
 ```
 
-To modify the number of assigned cores, set the pool paramers in docker-compose.yaml
+To modify the number of assigned cores, set the `pool` parameter in docker-compose.yaml
 ```yaml
     command:  python3 code/main.py --config experiments/ral.j2 --pool <NUMBER_OF_CORES>
 ```
