@@ -58,7 +58,7 @@ and open a [browser window](http://localhost:8889/notebooks/Experiments.ipynb).
 
 Take a look at the poster presented at the interactive session of ICRA 2019.
 
-![](https://github.com/jeguzzi/resilience/blob/master/ICRA_2019_Poster.png "Get the pdf.")
+![](https://github.com/jeguzzi/resilience/blob/master/ICRA_2019_Poster.pdf "Get the pdf.")
 
 
 
