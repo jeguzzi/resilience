@@ -52,3 +52,8 @@ docker-compose up notebook
 ```
 
 and open a [browser window](http://localhost:8889/notebooks/Experiments.ipynb).
+
+
+## ICRA Poster
+
+Take a look at the poster presented at the interactive session of ICRA 2019.
