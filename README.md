@@ -4,7 +4,7 @@ Supplementary material, code and results for the ICRA 2019 paper by
 *Jérôme Guzzi, R. Omar Chavez-Garcia, Luca M. Gambardella, Alessandro Giusti*, 
 Dalle Molle Institute for Artificial Intelligence (IDSIA), USI-SUPSI, Lugano
 
-Vist our our [webpage](https://idsia-robotics.github.io) to know more about us!
+Vist our [webpage](https://idsia-robotics.github.io) to know more about us!
 
 ### Abstract
 
