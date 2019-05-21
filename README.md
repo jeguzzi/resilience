@@ -1,7 +1,8 @@
 # On the Impact of Uncertainty for Path Planning
-Supplementary material, code and results for the ICRA 2019 paper
+Supplementary material, code and results for the ICRA 2019 paper by
 
-*Jérôme Guzzi, R. Omar Chavez-Garcia, Luca M. Gambardella, Alessandro Giusti*, Dalle Molle Institute for Artificial Intelligence (IDSIA), USI-SUPSI, Lugano
+*Jérôme Guzzi, R. Omar Chavez-Garcia, Luca M. Gambardella, Alessandro Giusti*, 
+Dalle Molle Institute for Artificial Intelligence (IDSIA), USI-SUPSI, Lugano
 
 
 
